@@ -12,7 +12,7 @@
 #define MAP_SPAN 0.01f
 
 @interface ViewController ()
-
+    @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading_spin;
 @end
 
 @implementation ViewController
@@ -25,48 +25,58 @@
 	
     [self initData];
     
+    [self fetchData];
+    
+    //stop the spinner and show the map
+    mapView.hidden = NO;
+    
     [self centerMap];
-    
-    NSLog(@"docdscdcsdne");
-    
-    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:
-                              [NSURL URLWithString:@"http://kameraspotter.information.dk/api/list"]];
-    
-
-    NSError *error;
-    NSMutableDictionary *allCourses = [NSJSONSerialization
-                                       JSONObjectWithData:allCoursesData
-                                       options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
-                                       error:&error];
-
-
-    if( error ) {
-        NSLog(@"%@", [error localizedDescription]);
-    
-    } else {
-        
-        for ( NSDictionary *theCourse in allCourses ) {
-            
-             NSLog(@"Title: %@", theCourse[@"uid"] );
-            
-            /*NSLog(@"----");
-            NSLog(@"Title: %@", theCourse[@"title"] );
-            NSLog(@"Speaker: %@", theCourse[@"speaker"] );
-            NSLog(@"Time: %@", theCourse[@"time"] );
-            NSLog(@"Room: %@", theCourse[@"room"] );
-            NSLog(@"Details: %@", theCourse[@"details"] );
-            NSLog(@"----");*/
-        }
-        
-    }
-    
-    
-    //add a few cameras
-    [self addCamera: 55.3964792 :10.3920484 :@"First Camera" :@"Subtitle for #1"];
-    [self addCamera: 55.394566 :10.3841305 :@"Seconds Camera" :@"Subtitle for #2"];
     
     //and drop them to view
     [self drawCameras];
+    
+    //done, hide the spinner
+    [_loading_spin stopAnimating];
+}
+
+/*
+ * fetched a list of all the cameras
+ */
+-(void) fetchData {
+    
+    NSURL *json_url = [NSURL URLWithString:@"http://kameraspotter.information.dk/api/list"];
+    NSData *allCamerasData = [[NSData alloc] initWithContentsOfURL: json_url];
+    
+    
+    NSError *error;
+    NSMutableDictionary *allCameras = [NSJSONSerialization
+                                       JSONObjectWithData:allCamerasData
+                                       options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
+                                       error:&error];
+    
+    if( error ) {
+        NSLog(@"%@", [error localizedDescription]);
+        
+    }
+    
+    for ( NSDictionary *thisCamera in allCameras ) {
+    
+        NSString *title = Nil;
+        
+        if( [thisCamera[@"message"] length] == 0 ) {
+            title = @"No title";
+        } else {
+            title = thisCamera[@"message"];
+        }
+        
+        [self addCamera :[thisCamera[@"latitude"] doubleValue]
+                        :[thisCamera[@"longitude"] doubleValue]
+                        :title
+                        :@""
+         ];
+    
+    }
+    
 }
 
 /*
