@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Annotation.h"
+#import "CameraAnnotationView.h"
 
 #define MAP_SPAN 0.01f
 
@@ -25,6 +26,7 @@
 	
     [self initData];
     
+    //download data
     [self fetchData];
     
     //stop the spinner and show the map
@@ -56,12 +58,13 @@
     
     if( error ) {
         NSLog(@"%@", [error localizedDescription]);
-        
+        exit(0);
     }
     
     for ( NSDictionary *thisCamera in allCameras ) {
     
         NSString *title = Nil;
+        NSString *accuracy = @"Accuracy: ";
         
         if( [thisCamera[@"message"] length] == 0 ) {
             title = @"No title";
@@ -69,14 +72,42 @@
             title = thisCamera[@"message"];
         }
         
+        
+        if( [thisCamera[@"accuracy"] length] == 0 ) {
+            accuracy = [accuracy stringByAppendingString:@"N/A"];
+        } else {
+            accuracy = [accuracy stringByAppendingString:thisCamera[@"accuracy"]];
+        }
+        
         [self addCamera :[thisCamera[@"latitude"] doubleValue]
                         :[thisCamera[@"longitude"] doubleValue]
                         :title
-                        :@""
+                        :accuracy
          ];
     
     }
     
+}
+
+
+-(MKAnnotationView *)mapView :(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+
+    //do not change the blue dot, aka user location
+    if( [annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    NSString *annotationIdentifier = @"CameraViewAnnotation";
+    
+    CameraAnnotationView *cameraAnnotationView = (CameraAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    
+    if(!cameraAnnotationView) {
+        cameraAnnotationView = [[CameraAnnotationView alloc] initWithAnnotationWithImage:annotation reuseIdentifier:annotationIdentifier annotationViewImage:[UIImage imageNamed:@"video.png"]];
+        
+        cameraAnnotationView.canShowCallout = YES;
+    }
+    
+    return cameraAnnotationView;
 }
 
 /*
@@ -90,6 +121,8 @@
  * Initiate data loading
  */
 -(void) initData {
+    
+    mapView.delegate = self;
     
     //list of all camera locations
     allLocations = [[NSMutableArray alloc] init];

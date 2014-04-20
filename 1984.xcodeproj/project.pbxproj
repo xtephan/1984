@@ -24,6 +24,8 @@
 		F88E75DE19042BAE00255CAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75DD19042BAE00255CAF /* MapKit.framework */; };
 		F88E75E0190431B400255CAF /* locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F88E75DF190431B400255CAF /* locations.gpx */; };
 		F88E75E319044DA500255CAF /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E75E219044DA500255CAF /* Annotation.m */; };
+		F88E75E7190477C000255CAF /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = F88E75E6190477C000255CAF /* video.png */; };
+		F88E75EA1904790E00255CAF /* CameraAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F88E75E91904790E00255CAF /* CameraAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		F88E75DF190431B400255CAF /* locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = locations.gpx; sourceTree = "<group>"; };
 		F88E75E119044DA500255CAF /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		F88E75E219044DA500255CAF /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		F88E75E6190477C000255CAF /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = ../video.png; sourceTree = "<group>"; };
+		F88E75E81904790E00255CAF /* CameraAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraAnnotationView.h; sourceTree = "<group>"; };
+		F88E75E91904790E00255CAF /* CameraAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +136,8 @@
 				F88E75AF19042AA900255CAF /* Supporting Files */,
 				F88E75E119044DA500255CAF /* Annotation.h */,
 				F88E75E219044DA500255CAF /* Annotation.m */,
+				F88E75E81904790E00255CAF /* CameraAnnotationView.h */,
+				F88E75E91904790E00255CAF /* CameraAnnotationView.m */,
 			);
 			path = 1984;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 		F88E75AF19042AA900255CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F88E75E6190477C000255CAF /* video.png */,
 				F88E75B019042AA900255CAF /* 1984-Info.plist */,
 				F88E75B119042AA900255CAF /* InfoPlist.strings */,
 				F88E75B419042AA900255CAF /* main.m */,
@@ -250,6 +258,7 @@
 				F88E75C119042AA900255CAF /* Images.xcassets in Resources */,
 				F88E75B319042AA900255CAF /* InfoPlist.strings in Resources */,
 				F88E75E0190431B400255CAF /* locations.gpx in Resources */,
+				F88E75E7190477C000255CAF /* video.png in Resources */,
 				F88E75BC19042AA900255CAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88E75BF19042AA900255CAF /* ViewController.m in Sources */,
+				F88E75EA1904790E00255CAF /* CameraAnnotationView.m in Sources */,
 				F88E75B919042AA900255CAF /* AppDelegate.m in Sources */,
 				F88E75E319044DA500255CAF /* Annotation.m in Sources */,
 				F88E75B519042AA900255CAF /* main.m in Sources */,
