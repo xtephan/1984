@@ -27,7 +27,7 @@
     
 }
 
-@synthesize mapView,allLocations;
+@synthesize mapView,allLocations,navigationBar;
 
 - (void)viewDidLoad
 {
@@ -206,10 +206,76 @@
         //recenter the map
         [self centerMap];
         
-        NSLog(@"New Position: %.8f %.8f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        CLLocationDirection nearestCameraDistance;
+        nearestCameraDistance = [self findNearestCameraDistance :lastPosition];
         
+        
+        //update the view
+        [self updateNearestCameraView :nearestCameraDistance];
+
     }
     
+}
+
+/*
+ * Updates the view
+ */
+-(void)updateNearestCameraView :(CLLocationDistance)nearestCameraDistance {
+
+    NSString *displayString;
+    
+    //less than 100m
+    if( nearestCameraDistance < 100 ) {
+        
+         displayString = [NSString stringWithFormat:@"Nearest Camera: %.2f meters", nearestCameraDistance];
+        
+    }else if (nearestCameraDistance < 1000) {
+        
+        displayString = [NSString stringWithFormat:@"Nearest Camera: %.0f meters", nearestCameraDistance];
+        
+    } else if (nearestCameraDistance < 10000) {
+        
+        nearestCameraDistance = nearestCameraDistance / 1000;
+        displayString = [NSString stringWithFormat:@"Nearest Camera: %.2f km", nearestCameraDistance];
+        
+    } else {
+        nearestCameraDistance = nearestCameraDistance / 1000;
+        displayString = [NSString stringWithFormat:@"Nearest Camera: %.0f km", nearestCameraDistance];
+    }
+    
+    //display
+    navigationBar.prompt = displayString;
+    
+}
+
+/*
+ * Finds the nearest camera relative to a given position
+ */
+-(CLLocationDistance)findNearestCameraDistance :(CLLocationCoordinate2D)fromPosition {
+    
+    CLLocationDistance min_distance = CLLocationDistanceMax;
+    CLLocation *fromLocation;
+    
+    fromLocation = [[CLLocation alloc] initWithLatitude:fromPosition.latitude
+                                              longitude:fromPosition.longitude];
+    
+    for (Annotation *thisCamera in allLocations) {
+        
+        CLLocation *thisCameraLocation;
+        
+        thisCameraLocation = [[CLLocation alloc] initWithLatitude:thisCamera.coordinate.latitude longitude:thisCamera.coordinate.longitude];
+        
+        CLLocationDistance thisCameraDistance;
+        thisCameraDistance = [thisCameraLocation distanceFromLocation:fromLocation];
+        
+        if ( min_distance > thisCameraDistance ) {
+            min_distance = thisCameraDistance;
+        }
+        
+        //NSLog(@"%@",[NSString stringWithFormat:@"%f",thisCameraDistance]);
+    }
+    
+    return min_distance;
 }
 
 /*
