@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "CameraDetailViewController.h"
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 

@@ -27,13 +27,43 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5H0-iC-rY1"/>
                     <connections>
                         <outlet property="loading_spin" destination="Dfx-4d-hPL" id="xFS-Cj-Js0"/>
                         <outlet property="mapView" destination="xvQ-Uq-BIp" id="72q-se-cKf"/>
+                        <segue destination="87V-lA-UCA" kind="modal" identifier="Camera Detail Segue" modalTransitionStyle="flipHorizontal" id="QZl-hE-hbX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="316" y="5"/>
+        </scene>
+        <!--Camera Detail View Controller - Camera Detail View Controller-->
+        <scene sceneID="3zf-6Y-e9i">
+            <objects>
+                <viewController storyboardIdentifier="Camera Detail View Controller" title="Camera Detail View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="87V-lA-UCA" customClass="CameraDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6iH-7i-r8f"/>
+                        <viewControllerLayoutGuide type="bottom" id="CvY-vy-Tcw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qz3-zl-IPr" customClass="CameraAnnotationView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4i3-wR-5a0">
+                                <rect key="frame" x="112" y="303" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bsZ-Ar-esr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NnQ-rf-zFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781" y="5"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

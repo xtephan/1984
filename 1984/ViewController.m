@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Annotation.h"
 #import "CameraAnnotationView.h"
+#import "CameraDetailViewController.h"
 
 #define MAP_SPAN 0.01f
 
@@ -83,13 +84,16 @@
                         :[thisCamera[@"longitude"] doubleValue]
                         :title
                         :accuracy
+                        :thisCamera[@"uid"]
          ];
     
     }
     
 }
 
-
+/*
+ * Used to dispay custom annotation
+ */
 -(MKAnnotationView *)mapView :(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
 
     //do not change the blue dot, aka user location
@@ -105,10 +109,47 @@
         cameraAnnotationView = [[CameraAnnotationView alloc] initWithAnnotationWithImage:annotation reuseIdentifier:annotationIdentifier annotationViewImage:[UIImage imageNamed:@"video.png"]];
         
         cameraAnnotationView.canShowCallout = YES;
+        cameraAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     }
     
     return cameraAnnotationView;
 }
+
+/*
+ * Intercept the tap event on the callout
+ */
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    
+    NSLog(@"Location selected: %@", view.annotation.title);
+    
+    [self performSegueWithIdentifier:@"Camera Detail Segue" sender:view];
+
+}
+
+/*
+ * Pass the annotation details to the new view
+ */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"Camera Detail Segue"]) {
+        
+        //controller for the new view
+        CameraDetailViewController *cdvc = [segue destinationViewController];
+        
+        //annotationview
+        CameraAnnotationView *annotationView = (CameraAnnotationView *)sender;
+        
+        //extract the actual annotation from the view
+        Annotation *annotation = [annotationView annotation];
+        
+        //and set values for the view controller
+        [cdvc setCameraName:annotation.title];
+        [cdvc setImageURLFromUID:annotation.uid];
+
+    }
+    
+}
+
 
 /*
  * Draw cameras
@@ -122,6 +163,14 @@
  */
 -(void) initData {
     
+    /*CLLocationManager *locManager;
+    locManager = [[CLLocationManager alloc] init];
+    [locManager setDelegate:self];
+    [locManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [locManager startPdatingLocation];
+    */
+    
+    //delegate map to self
     mapView.delegate = self;
     
     //list of all camera locations
@@ -131,7 +180,7 @@
 /*
  * Adds a camera to the list of cameras to be displayed
  */
--(void) addCamera :(double)latitude :(double)longitude :(NSString *)title :(NSString *)subtitle {
+-(void) addCamera :(double)latitude :(double)longitude :(NSString *)title :(NSString *)subtitle :(NSString *)uid {
 
     
     //set lat and long
@@ -146,6 +195,7 @@
     cameraAnnotation.coordinate = cameraLocation;
     cameraAnnotation.title = title;
     cameraAnnotation.subtitle = subtitle;
+    cameraAnnotation.uid = uid;
     
     //add it to the list
     [self.allLocations addObject:cameraAnnotation];

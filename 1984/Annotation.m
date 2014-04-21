@@ -10,6 +10,6 @@
 
 @implementation Annotation
 
-@synthesize coordinate, title, subtitle;
+@synthesize coordinate, title, subtitle,uid;
 
 @end

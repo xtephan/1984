@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80DEEA21905147F00D89462 /* CameraDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DEEA11905147F00D89462 /* CameraDetailViewController.m */; };
 		F88E75A919042AA900255CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75A819042AA900255CAF /* Foundation.framework */; };
 		F88E75AB19042AA900255CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75AA19042AA900255CAF /* CoreGraphics.framework */; };
 		F88E75AD19042AA900255CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75AC19042AA900255CAF /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80DEEA01905147F00D89462 /* CameraDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDetailViewController.h; sourceTree = "<group>"; };
+		F80DEEA11905147F00D89462 /* CameraDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDetailViewController.m; sourceTree = "<group>"; };
 		F88E75A519042AA900255CAF /* 1984.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1984.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88E75A819042AA900255CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F88E75AA19042AA900255CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				F88E75E219044DA500255CAF /* Annotation.m */,
 				F88E75E81904790E00255CAF /* CameraAnnotationView.h */,
 				F88E75E91904790E00255CAF /* CameraAnnotationView.m */,
+				F80DEEA01905147F00D89462 /* CameraDetailViewController.h */,
+				F80DEEA11905147F00D89462 /* CameraDetailViewController.m */,
 			);
 			path = 1984;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 			files = (
 				F88E75BF19042AA900255CAF /* ViewController.m in Sources */,
 				F88E75EA1904790E00255CAF /* CameraAnnotationView.m in Sources */,
+				F80DEEA21905147F00D89462 /* CameraDetailViewController.m in Sources */,
 				F88E75B919042AA900255CAF /* AppDelegate.m in Sources */,
 				F88E75E319044DA500255CAF /* Annotation.m in Sources */,
 				F88E75B519042AA900255CAF /* main.m in Sources */,
@@ -487,6 +493,7 @@
 				F88E75D919042AA900255CAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F88E75DA19042AA900255CAF /* Build configuration list for PBXNativeTarget "1984Tests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +502,7 @@
 				F88E75DC19042AA900255CAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
