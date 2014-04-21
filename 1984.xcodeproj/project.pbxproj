@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80CB458190592AF00460BB3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80CB457190592AF00460BB3 /* CoreLocation.framework */; };
 		F80DEEA21905147F00D89462 /* CameraDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DEEA11905147F00D89462 /* CameraDetailViewController.m */; };
 		F88E75A919042AA900255CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75A819042AA900255CAF /* Foundation.framework */; };
 		F88E75AB19042AA900255CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88E75AA19042AA900255CAF /* CoreGraphics.framework */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80CB457190592AF00460BB3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F80DEEA01905147F00D89462 /* CameraDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDetailViewController.h; sourceTree = "<group>"; };
 		F80DEEA11905147F00D89462 /* CameraDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDetailViewController.m; sourceTree = "<group>"; };
 		F88E75A519042AA900255CAF /* 1984.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1984.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80CB458190592AF00460BB3 /* CoreLocation.framework in Frameworks */,
 				F88E75AB19042AA900255CAF /* CoreGraphics.framework in Frameworks */,
 				F88E75AD19042AA900255CAF /* UIKit.framework in Frameworks */,
 				F88E75DE19042BAE00255CAF /* MapKit.framework in Frameworks */,
@@ -118,6 +121,7 @@
 		F88E75A719042AA900255CAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F80CB457190592AF00460BB3 /* CoreLocation.framework */,
 				F88E75DD19042BAE00255CAF /* MapKit.framework */,
 				F88E75A819042AA900255CAF /* Foundation.framework */,
 				F88E75AA19042AA900255CAF /* CoreGraphics.framework */,

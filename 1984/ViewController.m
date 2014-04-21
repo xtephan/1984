@@ -12,12 +12,20 @@
 #import "CameraDetailViewController.h"
 
 #define MAP_SPAN 0.01f
+#define SPAWN_LATITUDE 55.3939695
+#define SPAWN_LONGITUDE 10.3872602
 
 @interface ViewController ()
     @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading_spin;
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    
+    CLLocationManager *locationManager;
+    
+    CLLocationCoordinate2D lastPosition;
+    
+}
 
 @synthesize mapView,allLocations;
 
@@ -25,14 +33,17 @@
 {
     [super viewDidLoad];
 	
+    //inittiate the data
     [self initData];
+    
+    //grab the current location
+    [locationManager startUpdatingLocation];
     
     //download data
     [self fetchData];
     
-    //stop the spinner and show the map
+    //center the map and show it show the map
     mapView.hidden = NO;
-    
     [self centerMap];
     
     //and drop them to view
@@ -161,18 +172,44 @@
  */
 -(void) initData {
     
-    /*CLLocationManager *locManager;
-    locManager = [[CLLocationManager alloc] init];
-    [locManager setDelegate:self];
-    [locManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [locManager startPdatingLocation];
-    */
+    //init the location manager
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     //delegate map to self
     mapView.delegate = self;
     
     //list of all camera locations
     allLocations = [[NSMutableArray alloc] init];
+}
+
+/*
+ * Error getting location
+ */
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Error: %@",error);
+    NSLog(@"Failed getting location");
+}
+
+/*
+ * Location has updated
+ */
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    if( lastPosition.longitude != newLocation.coordinate.longitude && lastPosition.latitude != newLocation.coordinate.latitude ) {
+    
+        //save the new position
+        lastPosition.latitude = newLocation.coordinate.latitude;
+        lastPosition.longitude = newLocation.coordinate.longitude;
+        
+        //recenter the map
+        [self centerMap];
+        
+        NSLog(@"New Position: %.8f %.8f",newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        
+    }
+    
 }
 
 /*
@@ -204,10 +241,19 @@
  */
 -(void) centerMap {
     
-    //spawn map at a given coordonate
+    //center map at a given coordonate or at user location
     CLLocationCoordinate2D mapCenter;
-    mapCenter.latitude = 55.3939695;
-    mapCenter.longitude = 10.3872602;
+    if( lastPosition.latitude && lastPosition.longitude ) {
+        
+        mapCenter.latitude = lastPosition.latitude;
+        mapCenter.longitude = lastPosition.longitude;
+        
+    } else {
+        
+        mapCenter.latitude = SPAWN_LATITUDE;
+        mapCenter.longitude = SPAWN_LONGITUDE;
+        
+    }
     
     //view span
     MKCoordinateSpan span;
