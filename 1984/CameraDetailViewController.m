@@ -49,7 +49,7 @@
  * Close the modal
  */
 - (IBAction)tappedCloseModal:(id)sender {
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated: YES completion:nil];
 }
 
 /*
