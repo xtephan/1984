@@ -119,9 +119,7 @@
  * Intercept the tap event on the callout
  */
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    
-    NSLog(@"Location selected: %@", view.annotation.title);
-    
+
     [self performSegueWithIdentifier:@"Camera Detail Segue" sender:view];
 
 }

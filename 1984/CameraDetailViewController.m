@@ -14,7 +14,7 @@
 
 @implementation CameraDetailViewController
 
-@synthesize cameraName,url_string;
+@synthesize cameraName,url_string,cameraImage,navigationbar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,9 +29,27 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"View loaded");
-    NSLog(@"%@",self.cameraName);
-    NSLog(@"%@",self.url_string);
+    //grab the image
+    NSURL *imageURL = [NSURL URLWithString:url_string];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    //image.size.width;
+    
+    //no not hide it anymore
+    //cameraImage.image.size
+    cameraImage.image = image;
+    cameraImage.hidden = NO;
+    
+    //set the title
+    navigationbar.title = self.cameraName;
+}
+
+/*
+ * Close the modal
+ */
+- (IBAction)tappedCloseModal:(id)sender {
+    [self dismissModalViewControllerAnimated: YES];
 }
 
 /*
@@ -39,7 +57,6 @@
  */
 -(void) setCameraName :(NSString *)name {
     cameraName = name;
-    NSLog(@"Camera name set!");
 }
 
 /*
@@ -49,7 +66,6 @@
     
     url_string = [NSString stringWithFormat:@"%@%@", @"http://kameraspotter.information.dk/image/", uid];
 
-    NSLog(@"Image URL set!");
 }
 
 
@@ -58,16 +74,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

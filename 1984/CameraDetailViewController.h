@@ -13,6 +13,11 @@
 @property(weak,nonatomic) NSString *cameraName;
 @property(weak,nonatomic) NSString *url_string;
 
+@property (weak, nonatomic) IBOutlet UIImageView *cameraImage;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationbar;
+
+- (IBAction)tappedCloseModal:(id)sender;
+
 -(void) setCameraName :(NSString *)name;
 -(void) setImageURLFromUID :(NSString *)uid;
 
