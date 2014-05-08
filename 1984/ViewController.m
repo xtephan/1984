@@ -27,12 +27,15 @@
     
 }
 
-@synthesize mapView,allLocations,navigationBar;
+@synthesize mapView,allLocations;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
+    self.navigationItem.title = @"CCTV Cameras around you";
+    self.navigationItem.prompt = @"Nearest Camera: N/A";
+    
     //inittiate the data
     [self initData];
     
@@ -244,7 +247,7 @@
     }
     
     //display
-    navigationBar.prompt = displayString;
+    self.navigationItem.prompt = displayString;
     
 }
 

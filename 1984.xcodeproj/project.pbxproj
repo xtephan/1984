@@ -64,7 +64,7 @@
 		F88E75D119042AA900255CAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F88E75D319042AA900255CAF /* _984Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _984Tests.m; sourceTree = "<group>"; };
 		F88E75DD19042BAE00255CAF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		F88E75DF190431B400255CAF /* locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = locations.gpx; sourceTree = "<group>"; };
+		F88E75DF190431B400255CAF /* locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = locations.gpx; path = ../locations.gpx; sourceTree = "<group>"; };
 		F88E75E119044DA500255CAF /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		F88E75E219044DA500255CAF /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		F88E75E6190477C000255CAF /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = ../video.png; sourceTree = "<group>"; };
@@ -98,10 +98,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F8790E24191C0FBD005712A0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F88E75BD19042AA900255CAF /* ViewController.h */,
+				F88E75BE19042AA900255CAF /* ViewController.m */,
+				F80DEEA01905147F00D89462 /* CameraDetailViewController.h */,
+				F80DEEA11905147F00D89462 /* CameraDetailViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F8790E25191C0FDD005712A0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F88E75E81904790E00255CAF /* CameraAnnotationView.h */,
+				F88E75E91904790E00255CAF /* CameraAnnotationView.m */,
+				F88E75E119044DA500255CAF /* Annotation.h */,
+				F88E75E219044DA500255CAF /* Annotation.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		F88E759C19042AA900255CAF = {
 			isa = PBXGroup;
 			children = (
-				F88E75DF190431B400255CAF /* locations.gpx */,
 				F88E75AE19042AA900255CAF /* 1984 */,
 				F88E75CD19042AA900255CAF /* 1984Tests */,
 				F88E75A719042AA900255CAF /* Frameworks */,
@@ -134,19 +155,13 @@
 		F88E75AE19042AA900255CAF /* 1984 */ = {
 			isa = PBXGroup;
 			children = (
+				F8790E25191C0FDD005712A0 /* Views */,
+				F8790E24191C0FBD005712A0 /* ViewControllers */,
+				F88E75AF19042AA900255CAF /* Supporting Files */,
 				F88E75B719042AA900255CAF /* AppDelegate.h */,
 				F88E75B819042AA900255CAF /* AppDelegate.m */,
 				F88E75BA19042AA900255CAF /* Main.storyboard */,
-				F88E75BD19042AA900255CAF /* ViewController.h */,
-				F88E75BE19042AA900255CAF /* ViewController.m */,
 				F88E75C019042AA900255CAF /* Images.xcassets */,
-				F88E75AF19042AA900255CAF /* Supporting Files */,
-				F88E75E119044DA500255CAF /* Annotation.h */,
-				F88E75E219044DA500255CAF /* Annotation.m */,
-				F88E75E81904790E00255CAF /* CameraAnnotationView.h */,
-				F88E75E91904790E00255CAF /* CameraAnnotationView.m */,
-				F80DEEA01905147F00D89462 /* CameraDetailViewController.h */,
-				F80DEEA11905147F00D89462 /* CameraDetailViewController.m */,
 			);
 			path = 1984;
 			sourceTree = "<group>";
@@ -154,6 +169,7 @@
 		F88E75AF19042AA900255CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F88E75DF190431B400255CAF /* locations.gpx */,
 				F88E75E6190477C000255CAF /* video.png */,
 				F88E75B019042AA900255CAF /* 1984-Info.plist */,
 				F88E75B119042AA900255CAF /* InfoPlist.strings */,

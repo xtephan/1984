@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface CameraDetailViewController : UIViewController
 
@@ -14,10 +16,10 @@
 @property(weak,nonatomic) NSString *url_string;
 
 @property (weak, nonatomic) IBOutlet UIImageView *cameraImage;
-@property (weak, nonatomic) IBOutlet UINavigationItem *navigationbar;
 
 - (IBAction)tappedCloseModal:(id)sender;
 
+-(void) setCameraPosition :(CLLocationCoordinate2D *)position;
 -(void) setCameraName :(NSString *)name;
 -(void) setImageURLFromUID :(NSString *)uid;
 

@@ -12,9 +12,11 @@
 
 @end
 
-@implementation CameraDetailViewController
+@implementation CameraDetailViewController {
+    CLLocationCoordinate2D *camera_position;
+}
 
-@synthesize cameraName,url_string,cameraImage,navigationbar;
+@synthesize cameraName,url_string,cameraImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +44,9 @@
     cameraImage.hidden = NO;
     
     //set the title
-    navigationbar.title = self.cameraName;
+    self.navigationItem.title = self.cameraName;
+
+    //[setCameraDistancePrompt :];
 }
 
 /*
@@ -66,6 +70,41 @@
     
     url_string = [NSString stringWithFormat:@"%@%@", @"http://kameraspotter.information.dk/image/", uid];
 
+}
+
+-(void) setCameraPosition :(CLLocationCoordinate2D *)position {
+    camera_position = position;
+}
+
+/*
+ * Updates the view
+ */
+-(void)setCameraDistancePrompt :(CLLocationDistance)nearestCameraDistance {
+    
+    NSString *displayString;
+    
+    //less than 100m
+    if( nearestCameraDistance < 100 ) {
+        
+        displayString = [NSString stringWithFormat:@"Camera Distance: %.2f meters", nearestCameraDistance];
+        
+    }else if (nearestCameraDistance < 1000) {
+        
+        displayString = [NSString stringWithFormat:@"Camera Distance: %.0f meters", nearestCameraDistance];
+        
+    } else if (nearestCameraDistance < 10000) {
+        
+        nearestCameraDistance = nearestCameraDistance / 1000;
+        displayString = [NSString stringWithFormat:@"Camera Distance: %.2f km", nearestCameraDistance];
+        
+    } else {
+        nearestCameraDistance = nearestCameraDistance / 1000;
+        displayString = [NSString stringWithFormat:@"Camera Distance: %.0f km", nearestCameraDistance];
+    }
+    
+    //display
+    self.navigationItem.prompt = displayString;
+    
 }
 
 

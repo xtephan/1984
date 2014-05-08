@@ -15,6 +15,5 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong,nonatomic) NSMutableArray *allLocations;
-@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBar;
 
 @end
